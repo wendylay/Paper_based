@@ -1,5 +1,3 @@
-# Support_2022
-<<<<<<< HEAD
 The supporting code for My research
 =======
 ***The supporting code for My research***
@@ -12,4 +10,3 @@ The supporting code for My research
 ---
 
 Have Question, please connect wendian_lai@163.com
->>>>>>> master

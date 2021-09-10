@@ -67,8 +67,6 @@ for idx = 9 : length(L8_dates)
         
         % draw location
         figure
-        set(gca, 'position',[0.1 0.1 0.9 0.8]);
-        set(gcf, 'color', 'white','Units', 'normalized','position', [0.06 0.06 0.8 0.8]);
         hold on
         m_proj('Mercator','lon',[min(-79.21) max(-75.34)],'lat',[min(23.4) max(28)]);  % Bahamas
         m_pcolor(double(lon_image), double(lat_image), Rrs_image(:, :, 1)); % L8

@@ -13,12 +13,6 @@ end
 for idx = 1 : length(L8_dates)
     
     L8_date = L8_dates{idx};
-    % filter the date already done
-%     if (isequal(L8_date, '20200706') || isequal(L8_date, '20200807') ...
-%             || isequal(L8_date, '20200401') || isequal(L8_date, '20201213') || ...
-%             isequal(L8_date, '20201229'))
-%         continue
-%     end
     
     files_dir = ['E:\Match_Landsat8_IceSat2\014044\' L8_date '\'];
     
@@ -32,9 +26,7 @@ for idx = 1 : length(L8_dates)
     L8_filename = [files_dir L8_filename(1).name];
     L8_albedo_filename = [files_dir L8_albedo_filename(1).name];
     try
-        cloud_hist_save_dir = '.\match results\014044_SW_Bahamas\cloud_mask_hist\';
-        mkdir(cloud_hist_save_dir)
-        [lon_image, lat_image, rho_image] = load_Landsat8_rhorc(L8_filename, L8_albedo_filename, [cloud_hist_save_dir 'cloud_hist_' L8_albedo_filename(end-24:end-10)]);
+        [lon_image, lat_image, rho_image] = load_Landsat8_rhorc(L8_filename, L8_albedo_filename);
         str_time_L8 = ncreadatt(L8_albedo_filename, '/', 'time_coverage_start');
         str_time_L8(11) = ' ';
         str_time_L8(end) = [];
@@ -75,9 +67,7 @@ for idx = 1 : length(L8_dates)
         
         % draw location
         figure
-        set(gca, 'position',[0.1 0.1 0.9 0.8]);
-        set(gcf, 'color', 'white','Units', 'normalized','position', [0.06 0.06 0.8 0.8]);
-        hold on
+                hold on
         m_proj('Mercator','lon',[min(lon_image(:))-1 max(lon_image(:))+1],'lat',[min(lat_image(:))-1 max(lat_image(:))+1]);  % Bahamas
         m_pcolor(double(lon_image), double(lat_image), rho_image(:, :, 1)); % L8
         m_plot(IS2_lon, IS2_lat, '-r');

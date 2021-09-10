@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import scipy.io as sio
-from my_pkg_MLP.Neural_network_function import r2_keras
+from Neural_network_function import r2_keras
 
 
 def draw_loss_function(record, saving=False, name=''):
@@ -72,7 +72,7 @@ def training():
                        verbose=2)
 
     os.makedirs('./Models', exist_ok=True)
-    model.save('./Models/0709_global_depth.h5')
+    model.save('./Models/depth_model_v2.h5')
     model.summary()
     draw_loss_function(record, saving=True)
     y_pre = model.predict(X_test)
@@ -85,7 +85,7 @@ def training():
 
 
 def testing():
-    model_name = './Models/all_data_013043.h5'
+    model_name = './Models/depth_model.h5'
     model = load_model(model_name, custom_objects={'r2_keras': r2_keras})
     mat_filename = r'D:\OneDrive - stu.xmu.edu.cn\4 Code\1 M File\Shallow_bathymetry_global\H_match\match results\Dry\gt1r_20190924163909_process.mat'
     matData = sio.loadmat(mat_filename)
@@ -100,5 +100,6 @@ def testing():
 
 
 if __name__ == '__main__':
-    training()
+    # training()
     # testing()
+    pass

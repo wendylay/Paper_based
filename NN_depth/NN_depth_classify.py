@@ -80,7 +80,7 @@ def train_data(data):
         validation_data=(X_test, y_test), verbose=2
     )
 
-    model.save('Models/classify_model_global.h5')
+    model.save('Models/classify_model.h5')
 
     model.summary()
 
